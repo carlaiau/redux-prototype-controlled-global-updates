@@ -10,6 +10,7 @@ const store = createStore(rootReducer)
 render(
   <Provider store={store}>
     <App />
-  </Provider>,
+  </Provider>
+  ,
   document.getElementById('root')
 )
