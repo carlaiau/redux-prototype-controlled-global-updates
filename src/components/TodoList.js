@@ -17,7 +17,7 @@ const TodoList = ({ todos, toggleTodo, editTodo }) => (
     <div style={{ width: '50%' }}>
 
       <pre style={{ background: '#f1f2f6', padding: '10px', borderRadius: '3px' }}>
-        Global State Dump<br />
+        Global State Dump (Post filtering)<br />
         {JSON.stringify(todos, null, 2)}
       </pre>
     </div>
