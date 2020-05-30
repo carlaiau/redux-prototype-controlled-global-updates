@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../actions'
 
+import StyledButton from '../components/StyledButton'
+
 const AddTodo = ({ dispatch }) => {
   let input
 
@@ -16,12 +18,13 @@ const AddTodo = ({ dispatch }) => {
         input.value = ''
       }}>
         <input ref={node => input = node} />
-        <button type="submit">
-          Add Todo
-        </button>
+        <StyledButton type="submit" style={{ marginLeft: '5px' }}>
+          Add Item
+        </StyledButton>
       </form>
     </div>
   )
 }
+
 
 export default connect()(AddTodo)

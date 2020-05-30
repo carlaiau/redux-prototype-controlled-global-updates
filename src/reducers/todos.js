@@ -1,17 +1,17 @@
 const initalToDos = [
   {
     id: 0,
-    label: 'The 1st',
+    label: 'iPhone 8',
     completed: false,
-    price: '10',
-    location: 'Dunedin'
+    price: '600',
+    brand: 'Apple'
   },
   {
     id: 1,
-    label: 'The 2nd',
+    label: 'Galaxy S4',
     completed: false,
-    price: '20',
-    location: 'Christchurch'
+    price: '200',
+    brand: 'Samsung'
   }
 ]
 
@@ -23,7 +23,9 @@ const todos = (state = initalToDos, action) => {
         {
           id: action.id,
           label: action.label,
-          completed: false
+          completed: false,
+          price: '',
+          brand: ''
         }
       ]
     case 'TOGGLE_TODO':

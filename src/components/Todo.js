@@ -1,25 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
+import StyledButton from './StyledButton'
 const Todo = ({ onClick, todo, onEdit }) => {
-  const { id, label, price, location, completed } = todo
+  const { id, label, price, brand, completed } = todo
 
   const [priceVisible, togglePrice] = useState(false)
-  const [locationVisible, toggleLocation] = useState(false)
+  const [brandVisible, toggleBrand] = useState(false)
 
-  const [localPrice, changePrice] = useState(price)
-  const [localLocation, changeLocation] = useState(location)
+  const [localPrice, changePrice] = useState('')
+  const [localBrand, changeBrand] = useState('')
+
+  useEffect(() => {
+    changePrice(price)
+  }, [price])
+
+  useEffect(() => {
+    changeBrand(brand)
+  }, [brand])
 
   return (
     <li style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
       <div style={{
-        border: '1px solid #333',
-        padding: '5px',
-        width: '500px',
-        marginBottom: '5px'
+        border: '1px solid ' + completed ? '#2ed573' : '#ff4757',
+        padding: '2.5%',
+        width: '95%',
+        marginBottom: '5px',
+        borderRadius: '3px',
+        background: completed ? '#7bed9f' : '#ff6b81'
       }}>
         <div style={{
           display: 'flex',
+          flex: 2,
           justifyContent: 'space-between',
           width: '100%'
         }}>
@@ -29,43 +41,38 @@ const Todo = ({ onClick, todo, onEdit }) => {
             }}>
             {label}
           </span>
-
-          <button onClick={() => {
-            if (locationVisible && location != localLocation)
-              onEdit(id, 'location', localLocation)
-
+          <div style={{ display: 'flex' }}></div>
+          <StyledButton onClick={() => {
+            if (brandVisible && brand != localBrand)
+              onEdit(id, 'brand', localBrand)
             if (priceVisible && price != localPrice)
               onEdit(id, 'price', localPrice)
 
-            toggleLocation(false)
+            toggleBrand(false)
             togglePrice(!priceVisible)
           }
           }>
             Price
-          </button>
-          <button onClick={() => {
+          </StyledButton>
+          <StyledButton onClick={() => {
             if (priceVisible && price != localPrice)
               onEdit(id, 'price', localPrice)
-
-            if (locationVisible && location != localLocation)
-              onEdit(id, 'location', localLocation)
+            if (brandVisible && brand != localBrand)
+              onEdit(id, 'brand', localBrand)
 
             togglePrice(false)
-            toggleLocation(!locationVisible)
+            toggleBrand(!brandVisible)
 
           }
-          }>Location</button>
-          <button onClick={onClick}>
+          }>Brand</StyledButton>
+          <StyledButton onClick={onClick}>
             {completed ? 'Undo' : 'Done'}
-          </button>
+          </StyledButton>
         </div>
-        <p>These are the globals
-        Price: {price} | location: {location}
-        </p>
+
         {
           priceVisible && (
-            <div style={{ background: '#aa0000', height: '100px', padding: '10px', width: '480px', margin: '5px 0' }}>
-              <p>You must close the toggle to actually update the global state</p>
+            <div style={{ padding: '2.5%', margin: '5px 0' }}>
               <input type="text"
                 value={localPrice}
                 onChange={(e) => changePrice(e.target.value)}
@@ -74,12 +81,11 @@ const Todo = ({ onClick, todo, onEdit }) => {
           )
         }
         {
-          locationVisible && (
-            <div style={{ background: '#00aa00', height: '100px', padding: '10px', width: '480px', margin: '5px 0' }}>
-              <p>You must close the toggle to actually update the global state</p>
+          brandVisible && (
+            <div style={{ padding: '2.5%', margin: '5px 0' }}>
               <input type="text"
-                value={localLocation}
-                onChange={(e) => changeLocation(e.target.value)}
+                value={localBrand}
+                onChange={(e) => changeBrand(e.target.value)}
               />
             </div>
           )
@@ -97,7 +103,7 @@ Todo.propTypes = {
     completed: PropTypes.bool.isRequired,
     label: PropTypes.string.isRequired,
     price: PropTypes.string,
-    location: PropTypes.string
+    brand: PropTypes.string
   })
 
 }
