@@ -11,7 +11,7 @@ const App = () => (
     <AddTodo />
     <VisibleTodoList />
     <Footer />
-    <div style={{ background: '#a4b0be', padding: '5px', borderRadius: '3px', marginTop: '10px' }}>
+    <div style={{ background: '#a4b0be', padding: '5px', borderRadius: '3px', marginTop: '10px', maxWidth: '800px', marginBottom: '10px' }}>
       <p>
         Global state of <strong>Price & Brand</strong> are only updated after changing a value and closing the toggle.
       </p>
@@ -27,6 +27,7 @@ const App = () => (
       </p>
       <p>using useEffect to listen for prop changes. Each panel will call the same global state update function in a similar fashion to how this example works.</p>
     </div>
+    <a href="https://github.com/carlaiau/redux-prototype-controlled-global-updates">Source</a>
   </div >
 )
 
